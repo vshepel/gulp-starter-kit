@@ -4,6 +4,7 @@
     "indentation": "tab",
     "max-nesting-depth": null,
     "function-url-quotes": null,
+    "selector-class-pattern": null,
     "selector-no-qualifying-type": null,
     "selector-max-compound-selectors": null,
     "max-empty-lines": 1,
@@ -18,6 +19,7 @@
     }],
     "comment-empty-line-before": "always",
     "order/properties-alphabetical-order": null,
+    "scss/selector-no-redundant-nesting-selector": null,
     "scss/double-slash-comment-empty-line-before": ["always", {
       "except": ["first-nested"]
     }],
