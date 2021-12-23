@@ -25,7 +25,10 @@ import TerserPlugin  from 'terser-webpack-plugin'
 const { src, dest, parallel, series, watch } = gulp
 const paths = {
 	views: {
-		src: './src/views/**/*.html',
+		src: [
+			'./src/views/**/*.html',
+			'!./src/views/parts/**/*'
+		],
 		dist: './dist/',
 		watch: './src/views/**/*.html'
 	},
@@ -41,11 +44,11 @@ const paths = {
 	},
 	images: {
 		src: [
-			'./src/img/**/*.{png,jpg,jpeg,svg}',
-			'!./src/img/favicon'
+			'./src/img/**/*.{png,jpg,jpeg,gif,svg}',
+			'!./src/img/favicon/**/*'
 		],
 		dist: './dist/img/',
-		watch: './src/img/**/*.{png,jpg,jpeg,svg}'
+		watch: './src/img/**/*.{png,jpg,jpeg,gif,svg}'
 	},
 	sprites: {
 		src: './src/img/svg/*.svg',
@@ -57,15 +60,20 @@ const paths = {
 		dist: './dist/img/favicon/'
 	},
 	fonts: {
-		src: './src/fonts/**/*.{ttf,woff,eot,svg}',
+		src: './src/fonts/**/*.{ttf,woff,woff2,eot,svg}',
 		dist: './dist/fonts/'
+	},
+	files: {
+		src: './src/files/*',
+		dist: './dist/files/'
 	}
 };
 const argv = yargs(hideBin(process.argv)).argv,
 	  production = !!argv.production,
 	  sass = gulpSass(dartSass);
 
-function serve() {
+function serve(done) {
+	browsersync.create();
 	browsersync.init({
 		server: {
 			baseDir: './dist/'
@@ -81,13 +89,15 @@ function serve() {
 	watch(paths.scripts.watch, { usePolling: true }, scripts);
 	watch(paths.images.watch, { usePolling: true }, images);
 	watch(paths.sprites.watch, { usePolling: true }, sprites);
+	done()
 }
 
-async function clean() {
-	return del('dist/**/*', { force: true })
+async function clean(done) {
+	await del.sync('dist/**/*')
+	done()
 }
 
-async function views() {
+function views() {
 	return src(paths.views.src)
         .pipe(include({
             prefix: '@@',
@@ -103,7 +113,7 @@ function styles() {
 	return src(paths.styles.src)
         .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(plumber())
-        .pipe(sass())
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulpif(production, autoprefixer({
             cascade: false,
             grid: true
@@ -247,7 +257,8 @@ function favicon() {
 		.pipe(dest(paths.favicon.dist))
 		.pipe(debug({
 			'title': 'Favicon'
-		}));
+		}))
+		.on('end', browsersync.reload);
 }
 
 function fonts() {
@@ -255,15 +266,23 @@ function fonts() {
 		.pipe(dest(paths.fonts.dist))
 		.pipe(debug({
 			'title': 'Fonts'
-		}));
+		}))
+		.on('end', browsersync.reload);
 }
 
-export { clean, views, styles, scripts, images, sprites, favicon, fonts }
+function files() {
+	return src(paths.files.src)
+		.pipe(dest(paths.files.dist))
+		.pipe(debug({
+			'title': 'Files'
+		}))
+		.on('end', browsersync.reload);
+}
 
-export const development = series(clean,
-    parallel([views, styles, scripts, images, sprites, favicon, fonts]), serve);
+export { clean, views, styles, scripts, images, sprites, favicon, fonts, files }
 
-export const prod = series(clean,
-    parallel([views, styles, scripts, images, sprites, favicon, fonts]));
+export const development = series(clean, views, styles, scripts, images, sprites, favicon, fonts, files, serve);
+
+export const prod = series(clean, views, styles, scripts, images, sprites, favicon, fonts, files);
 
 export default development;

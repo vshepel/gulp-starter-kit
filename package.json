@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev": "gulp",
+    "clean": "gulp clean",
     "build": "gulp prod --production",
     "build:views": "gulp views --production",
     "build:styles": "gulp styles --production",
@@ -17,6 +18,7 @@
     "build:sprites": "gulp sprites --production",
     "build:favicon": "gulp favicon --production",
     "build:fonts": "gulp fonts --production",
+    "build:files": "gulp files --production",
     "lint:styles": "stylelint \"src/**/*.scss\"",
     "lint:styles --fix": "stylelint --fix \"src/**/*.scss\" --fix"
   },

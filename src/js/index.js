@@ -17,19 +17,21 @@ import IMask from 'imask';
 
 // Phone mask
 
-const phoneInputs = document.querySelectorAll('input[type=tel]');
+(function () {
+    const phoneInputs = document.querySelectorAll('input[type=tel]');
 
-phoneInputs.forEach((el) => {
-    IMask(el, {
-        mask: '+{38} (000) 000-00-00'
+    phoneInputs.forEach((el) => {
+        IMask(el, {
+            mask: '+{38} (000) 000-00-00'
+        });
     });
-});
+})();
 
 // October CMS - Contact form
 
-const contactsForms = document.querySelectorAll('.form');
+(function () {
+    const contactsForms = document.querySelectorAll('.form');
 
-if (contactsForms) {
     contactsForms.forEach((el) => {
         el.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -43,14 +45,21 @@ if (contactsForms) {
             });
         });
     });
-}
+})();
 
 // October CMS - Change language
 
-document.querySelector(".languages").addEventListener("click", (e) => {
-    request.sendData('onSwitchLocale', {
-        data: {
-            locale: e.target.dataset.locale
-        },
+(function () {
+    const languages = document.querySelector('.languages');
+
+    if (!languages)
+        return
+
+    languages.addEventListener('click', (e) => {
+        request.sendData('onSwitchLocale', {
+            data: {
+                locale: e.target.dataset.locale
+            },
+        });
     });
-});
+})();
