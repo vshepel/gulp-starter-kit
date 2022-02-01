@@ -44,11 +44,11 @@ const paths = {
 	},
 	images: {
 		src: [
-			'./src/img/**/*.{png,jpg,jpeg,gif,svg}',
+			'./src/img/**/*.{png,jpg,jpeg,webp,gif,svg}',
 			'!./src/img/favicon/**/*'
 		],
 		dist: './dist/img/',
-		watch: './src/img/**/*.{png,jpg,jpeg,gif,svg}'
+		watch: './src/img/**/*.{png,jpg,jpeg,webp,gif,svg}'
 	},
 	sprites: {
 		src: './src/img/svg/*.svg',
