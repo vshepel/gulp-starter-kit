@@ -23,7 +23,7 @@
     "lint:styles --fix": "stylelint --fix \"src/**/*.scss\" --fix"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.2",
+    "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.3",
     "babel-plugin-module-resolver": "^4.1.0",
@@ -46,12 +46,12 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svg-sprite": "^1.5.0",
     "postcss": "^8.4.6",
-    "sass": "^1.49.7",
-    "stylelint": "^14.5.0",
+    "sass": "^1.49.8",
+    "stylelint": "^14.5.3",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.68.0",
+    "webpack": "^5.69.1",
     "webpack-stream": "^7.0.0",
     "yargs": "^17.3.1"
   },
