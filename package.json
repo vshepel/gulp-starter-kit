@@ -20,10 +20,11 @@
     "build:fonts": "gulp fonts --production",
     "build:files": "gulp files --production",
     "lint:styles": "stylelint \"src/**/*.scss\"",
-    "lint:styles --fix": "stylelint --fix \"src/**/*.scss\" --fix"
+    "lint:styles --fix": "stylelint --fix \"src/**/*.scss\" --fix",
+    "pretty": "prettier --write \"src/**/*.html\""
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
+    "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.4",
     "babel-plugin-module-resolver": "^4.1.0",
@@ -46,7 +47,9 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svg-sprite": "^1.5.0",
     "postcss": "^8.4.12",
-    "sass": "^1.49.11",
+    "prettier": "^2.6.2",
+    "prettier-plugin-organize-attributes": "^0.0.5",
+    "sass": "^1.50.0",
     "stylelint": "^14.6.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-sass-guidelines": "^9.0.1",
