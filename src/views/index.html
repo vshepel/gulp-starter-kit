@@ -1,9 +1,15 @@
-@@include("../views/parts/header.html", { "title": "Home page" })
+<!DOCTYPE html>
+<html lang="en">
+    @@include("../views/parts/head.html", { "title": "Home page" })
+    <body>
+        @@include("../views/parts/header.html")
 
-<section>
-    <div class="container">
-        <h1>Gulp starter kit</h1>
-    </div>
-</section>
+        <section>
+            <div class="container">
+                <h1>Gulp starter kit</h1>
+            </div>
+        </section>
 
-@@include("../views/parts/footer.html")
+        @@include("../views/parts/footer.html")
+    </body>
+</html>

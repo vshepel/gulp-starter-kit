@@ -54,9 +54,9 @@
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.71.0",
+    "webpack": "^5.72.0",
     "webpack-stream": "^7.0.0",
-    "yargs": "^17.4.0"
+    "yargs": "^17.4.1"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
