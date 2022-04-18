@@ -153,9 +153,6 @@ function scripts() {
 		.pipe(webpackStream({
 			mode: production ? 'production' : 'development',
 			performance: { hints: false },
-			plugins: [
-				new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
-			],
 			entry: {
 				main: './src/js/index.js',
 			},
