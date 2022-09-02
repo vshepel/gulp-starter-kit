@@ -1,5 +1,5 @@
-import {createPopper} from "@popperjs/core";
-import {Modal} from "bootstrap";
+import { createPopper } from "@popperjs/core";
+import { Modal } from "bootstrap";
 import request from "oc-request";
 import IMask from "imask";
 
@@ -10,9 +10,9 @@ import IMask from "imask";
         const doc = document.documentElement;
         doc.style.setProperty("--vh", `${window.innerHeight}px`);
     };
-    window.addEventListener('resize', setRealHeight);
+    window.addEventListener("resize", setRealHeight);
     setRealHeight();
-}());
+})();
 
 // Phone mask
 
@@ -21,7 +21,7 @@ import IMask from "imask";
 
     phoneInputs.forEach((el) => {
         IMask(el, {
-            mask: "+{38} (000) 000-00-00"
+            mask: "+{38} (000) 000-00-00",
         });
     });
 })();
@@ -51,13 +51,12 @@ import IMask from "imask";
 (function () {
     const languages = document.querySelector(".languages");
 
-    if (!languages)
-        return
+    if (!languages) return;
 
     languages.addEventListener("click", (e) => {
         request.sendData("onSwitchLocale", {
             data: {
-                locale: e.target.dataset.locale
+                locale: e.target.dataset.locale,
             },
         });
     });
