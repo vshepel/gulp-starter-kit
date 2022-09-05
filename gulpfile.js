@@ -74,6 +74,7 @@ function serve(done) {
         },
         ghostMode: false,
         notify: false,
+        host: "192.168.0.100",
         // online: true,
         // tunnel: 'yousutename', // https://yousutename.loca.lt
     });
