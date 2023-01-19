@@ -1,6 +1,5 @@
 import { createPopper } from "@popperjs/core";
 import { Modal } from "bootstrap";
-import request from "oc-request";
 import IMask from "imask";
 
 // Get real vh
@@ -22,42 +21,6 @@ import IMask from "imask";
     phoneInputs.forEach((el) => {
         IMask(el, {
             mask: "+{38} (000) 000-00-00",
-        });
-    });
-})();
-
-// October CMS - Contact form
-
-(function () {
-    const contactsForms = document.querySelectorAll(".form");
-
-    contactsForms.forEach((el) => {
-        el.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            request.sendForm(el, "emptyForm::onFormSubmit", {
-                success: (result) => {
-                    el.reset();
-                    const thanksModalOb = Modal.getOrCreateInstance(document.getElementById("thanksModal"));
-                    thanksModalOb.show();
-                },
-            });
-        });
-    });
-})();
-
-// October CMS - Change language
-
-(function () {
-    const languages = document.querySelector(".languages");
-
-    if (!languages) return;
-
-    languages.addEventListener("click", (e) => {
-        request.sendData("onSwitchLocale", {
-            data: {
-                locale: e.target.dataset.locale,
-            },
         });
     });
 })();
